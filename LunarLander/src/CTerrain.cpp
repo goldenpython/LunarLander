@@ -1,4 +1,5 @@
 #include "CTerrain.h"
+#include <time.h>
 
 CTerrain::CTerrain(float fMapWidth, float fMapHeight, float fSegmentSize) 
 	: m_fMapWidth(fMapWidth), m_fMapHeight(fMapHeight), m_fSegmentSize(fSegmentSize), m_fWindSpeed(0), m_fTime(0)
@@ -15,6 +16,8 @@ void CTerrain::Generate() {
 	m_oHeightMap.push_back(0);
 	float fLastHeight = (fMinHeight + fMaxHeight) / 2;
 	m_oHeightMap.push_back(fLastHeight);
+
+	srand((int)time(NULL));
 
 	while (m_oHeightMap.size() * m_fSegmentSize < m_fMapWidth - m_fSegmentSize) {
 		int nRand = rand() % 100;
