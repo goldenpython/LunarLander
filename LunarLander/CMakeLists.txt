@@ -50,3 +50,14 @@ if (WIN32)
 		COMMENT "copying irrlicht dll. " 
 	)
 endif (WIN32)
+
+if (UNIX)
+	message("UNIX")
+
+	TARGET_LINK_LIBRARIES(LunarLander
+		# "${IRRLICHT_DIR}/lib/Linux/libIrrlicht.so"
+		"/usr/local/lib/libIrrlicht.so"
+	)
+
+endif (UNIX)
+

@@ -12,7 +12,7 @@ class CVector2D {
 	public:
 		CVector2D();
 		CVector2D(RealNumber x, RealNumber y);
-		CVector2D(CVector2D &v);
+		CVector2D(const CVector2D &v);
 
 		CVector2D& operator = (const CVector2D &v);
 

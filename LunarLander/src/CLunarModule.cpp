@@ -123,7 +123,7 @@ void CLunarModule::CheckCollisions(float fFrameDeltaTimeInSeconds) {
 	float fAngularSpeed = 0;
 
 	while (oIt.HasMoreElements()) {
-		CLine &oLine = oIt.GetNextElement();
+		const CLine &oLine = oIt.GetNextElement();
 		CVector2D<float> oIntersectionPoint;
 
 		bool bLandingGearCollision = CheckCollisionWithTerrainSegment(m_oLandingGear, oLine, oIntersectionPoint);
