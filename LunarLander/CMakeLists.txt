@@ -53,11 +53,12 @@ if (WIN32)
 endif (WIN32)
 
 if (UNIX)
-	message("UNIX")
+	message("Linux")
+
+	FIND_LIBRARY(IRRLICHT_LIB_FULL_PATH NAME "libIrrlicht.so")
 
 	TARGET_LINK_LIBRARIES(LunarLander
-		# "${IRRLICHT_DIR}/lib/Linux/libIrrlicht.so"
-		"/usr/local/lib/libIrrlicht.so"
+		"${IRRLICHT_LIB_FULL_PATH}"
 	)
 
 endif (UNIX)
