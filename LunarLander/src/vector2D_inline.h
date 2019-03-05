@@ -9,7 +9,7 @@ MATH_INLINE CVector2D<RealNumber>::CVector2D(RealNumber x, RealNumber y) {
 }
 
 template <class RealNumber>
-MATH_INLINE CVector2D<RealNumber>::CVector2D(CVector2D &v) { 
+MATH_INLINE CVector2D<RealNumber>::CVector2D(const CVector2D &v) { 
 	x = v.x, y = v.y; 
 }
 

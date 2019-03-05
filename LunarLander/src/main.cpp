@@ -1,7 +1,11 @@
 #include <irrlicht.h>
 #include "driverChoice.h"
 
-#include <Windows.h>
+#ifdef WIN32
+	#include <Windows.h>
+#else
+	#include <unistd.h>
+#endif // WIN32
 #include "IrrGraphics.h"
 #include "CLunarModule.h"
 #include "CTerrain.h"
@@ -199,8 +203,12 @@ int main()
 			oTerrain.Draw(poGraphics, oCameraPos);
 
 			driver->endScene();
-
-			Sleep(10);
+			
+			#ifdef WIN32
+				Sleep(10);
+			#else
+				usleep(10 * 1000);
+			#endif // WIN32
 		}
 	}
 

@@ -1,6 +1,10 @@
 #pragma once
 
-#define MATH_INLINE		__forceinline
+#ifdef WIN32
+	#define MATH_INLINE		__forceinline
+#else
+	#define MATH_INLINE		inline
+#endif // WIN32
 
 template <typename T>
 static T Clamp(T tValue, T tMin, T tMax) {

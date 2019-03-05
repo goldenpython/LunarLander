@@ -1,10 +1,10 @@
 cmake_minimum_required(VERSION 2.6)
 PROJECT(LunarLander)
 
-SET(IRRLICHT_DIR "c:/irrlicht-1.8.1" CACHE PATH "Irrlicht's location")
+FIND_PATH(IRRLICHT_INCLUDE_DIR "irrlicht.h")
 
 INCLUDE_DIRECTORIES(
-   "${IRRLICHT_DIR}/include"
+   "${IRRLICHT_INCLUDE_DIR}"
    ${PROJECT_SOURCE_DIR}/include
 )
 
@@ -30,6 +30,7 @@ if (WIN32)
 		message("???")
 	endif ()
 
+	set (IRRLICHT_DIR "${IRRLICHT_INCLUDE_DIR}/../")
 	set (IRRLICHT_BINDIR_NAME "${PLATFORM}-${COMPILER}")
 
 	# message(${CMAKE_SIZEOF_VOID_P} "=" ${CMAKE_GENERATOR_TOOLSET}  "="      ${CMAKE_GENERATOR_PLATFORM}  "="   ${CMAKE_VS_PLATFORM_NAME}   "="        ${PLATFORM}   "=" ${IRRLICHT_BINDIR_NAME})
@@ -50,3 +51,14 @@ if (WIN32)
 		COMMENT "copying irrlicht dll. " 
 	)
 endif (WIN32)
+
+if (UNIX)
+	message("UNIX")
+
+	TARGET_LINK_LIBRARIES(LunarLander
+		# "${IRRLICHT_DIR}/lib/Linux/libIrrlicht.so"
+		"/usr/local/lib/libIrrlicht.so"
+	)
+
+endif (UNIX)
+
