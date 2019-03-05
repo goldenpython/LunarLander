@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 2.6)
 PROJECT(LunarLander)
 
-FIND_PATH(IRRLICHT_INCLUDE_DIR "irrlicht.h")
+FIND_PATH(IRRLICHT_INCLUDE_DIR NAMES "irrlicht.h" PATHS "/usr/include/irrlicht" "/usr/local/include/irrlicht")
 
 INCLUDE_DIRECTORIES(
    "${IRRLICHT_INCLUDE_DIR}"
@@ -55,7 +55,7 @@ endif (WIN32)
 if (UNIX)
 	message("Linux")
 
-	FIND_LIBRARY(IRRLICHT_LIB_FULL_PATH NAME "libIrrlicht.so")
+	FIND_LIBRARY(IRRLICHT_LIB_FULL_PATH NAMES "libIrrlicht.so")
 
 	TARGET_LINK_LIBRARIES(LunarLander
 		"${IRRLICHT_LIB_FULL_PATH}"
