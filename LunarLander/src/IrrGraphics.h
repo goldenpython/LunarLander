@@ -2,7 +2,12 @@
 
 #include "IGraphics.h"
 
-#include <irrlicht.h>
+namespace irr {
+	namespace video {
+		class IVideoDriver;
+	};
+};
+#include <SColor.h>
 
 class IrrGraphics : public IGraphics {
 	public:

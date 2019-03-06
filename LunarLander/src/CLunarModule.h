@@ -1,13 +1,14 @@
 #pragma once
 
-#include "IGraphics.h"
-#include "CLine.h"
 #include "vector2D.h"
 #include <vector>
 
 using namespace std;
 
+class IGraphics;
 class CTerrain;
+class CLine;
+
 class CLunarModule {
 	public:
 		CLunarModule();

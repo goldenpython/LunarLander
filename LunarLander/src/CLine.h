@@ -1,7 +1,7 @@
 #pragma once
 
-#include <stdio.h>
-#include "vector2D.h"
+template <class RealNumber>
+class CVector2D;
 
 class CLine {
 	public:

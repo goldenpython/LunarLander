@@ -1,8 +1,12 @@
 #pragma once
 
-#include "IGraphics.h"
-#include <vector>
 #include "CLine.h"
+#include <vector>
+
+template <class RealNumber>
+class CVector2D;
+
+class IGraphics;
 
 using namespace std;
 

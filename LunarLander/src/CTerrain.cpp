@@ -1,5 +1,8 @@
 #include "CTerrain.h"
+#include "vector2D.h"
+#include "IGraphics.h"
 #include <time.h>
+
 
 CTerrain::CTerrain(float fMapWidth, float fMapHeight, float fSegmentSize) 
 	: m_fMapWidth(fMapWidth), m_fMapHeight(fMapHeight), m_fSegmentSize(fSegmentSize), m_fWindSpeed(0), m_fTime(0)

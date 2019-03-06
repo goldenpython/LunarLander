@@ -1,8 +1,6 @@
 #pragma once
 
 #include "globalmath.h"
-#include <math.h>
-// #include "matrix2x2.h"
 
 template <class RealNumber>
 class CMatrix2x2;

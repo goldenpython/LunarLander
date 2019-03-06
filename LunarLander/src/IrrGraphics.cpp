@@ -1,4 +1,5 @@
 #include "IrrGraphics.h"
+#include <irrlicht.h>
 
 IrrGraphics::IrrGraphics(irr::video::IVideoDriver *m_poDriver) 
 	: m_poDriver(m_poDriver), m_oCurrentColor(255, 0, 0, 0) {

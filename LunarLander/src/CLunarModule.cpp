@@ -1,6 +1,8 @@
 #include "CLunarModule.h"
 #include "CTerrain.h"
+#include "CLine.h"
 #include "vector2D.h"
+#include "IGraphics.h"
 
 CLunarModule::CLunarModule() 
 	:	m_poTerrain(NULL),

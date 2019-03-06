@@ -1,4 +1,5 @@
 #include "CLine.h"
+#include "vector2D.h"
 
 CLine::CLine(float fX1, float fY1, float fX2, float fY2)
 	: m_fX1(fX1), m_fY1(fY1), m_fX2(fX2), m_fY2(fY2) 
