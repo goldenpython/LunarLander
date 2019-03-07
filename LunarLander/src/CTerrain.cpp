@@ -20,7 +20,7 @@ void CTerrain::Generate() {
 	float fLastHeight = (fMinHeight + fMaxHeight) / 2;
 	m_oHeightMap.push_back(fLastHeight);
 
-	srand((int)time(NULL));
+	srand(static_cast<int>(time(NULL)));
 
 	while (m_oHeightMap.size() * m_fSegmentSize < m_fMapWidth - m_fSegmentSize) {
 		int nRand = rand() % 100;
@@ -43,33 +43,33 @@ void CTerrain::Generate() {
 }
 
 void CTerrain::Draw(IGraphics *poGraphics, const CVector2D<float> &roCameraPos) {
-	int nCameraIndex = (int)(roCameraPos.x / m_fSegmentSize);
-	int nMinIndex = Clamp((int)nCameraIndex - 1, 1, (int)m_oHeightMap.size());
-	int nMaxIndex = Clamp((int)(nCameraIndex + 2 + poGraphics->GetScreenWidth() / m_fSegmentSize), 1, (int)m_oHeightMap.size());
+	int nCameraIndex = static_cast<int>(roCameraPos.x / m_fSegmentSize);
+	int nMinIndex = Clamp(nCameraIndex - 1, 1, static_cast<int>(m_oHeightMap.size()));
+	int nMaxIndex = Clamp(static_cast<int>(nCameraIndex + 2 + poGraphics->GetScreenWidth() / m_fSegmentSize), 1, static_cast<int>(m_oHeightMap.size()));
 
 	poGraphics->SetColor(195, 195, 195);
 	for (int i = nMinIndex; i < nMaxIndex; i++) {
-		int nX1 = (int)((i - 1) * m_fSegmentSize - roCameraPos.x);
-		int nY1 = (int)(m_oHeightMap[i - 1] - roCameraPos.y);
-		int nX2 = (int)(i * m_fSegmentSize - roCameraPos.x);
-		int nY2 = (int)(m_oHeightMap[i] - roCameraPos.y);
-		// poGraphics->DrawLine((int)fX1, (int)fY1, (int)fX2, (int)fY2);
+		int nX1 = static_cast<int>((i - 1) * m_fSegmentSize - roCameraPos.x);
+		int nY1 = static_cast<int>(m_oHeightMap[i - 1] - roCameraPos.y);
+		int nX2 = static_cast<int>(i * m_fSegmentSize - roCameraPos.x);
+		int nY2 = static_cast<int>(m_oHeightMap[i] - roCameraPos.y);
+		// poGraphics->DrawLine(static_cast<int>fX1, static_cast<int>fY1, static_cast<int>fX2, static_cast<int>fY2);
 
 		if (nY1 > nY2) {
-			poGraphics->FillRect(nX1, nY1, nX2 - nX1, (int)(m_fMapHeight - nY1));
+			poGraphics->FillRect(nX1, nY1, nX2 - nX1, static_cast<int>(m_fMapHeight - nY1));
 			poGraphics->FillTriangle(nX2, nY2, nX1, nY1, nX2, nY1);
 		} else if (nY1 < nY2){
-			poGraphics->FillRect(nX1, nY2, nX2 - nX1, (int)m_fMapHeight - nY2);
+			poGraphics->FillRect(nX1, nY2, nX2 - nX1, static_cast<int>(m_fMapHeight - nY2));
 			poGraphics->FillTriangle(nX1, nY1, nX1, nY2, nX2, nY2);
 		} else {
-			poGraphics->FillRect(nX1, nY1, nX2 - nX1, (int)m_fMapHeight - nY2);
+			poGraphics->FillRect(nX1, nY1, nX2 - nX1, static_cast<int>(m_fMapHeight - nY2));
 		}
 	}
 }
 
 CTerrain::CTerrainLineIterator CTerrain::GetCollisionLines(float fMinX, float fMaxX) {
-	int nMinIndex = Clamp((int)(fMinX / m_fSegmentSize - 1), 0, (int)m_oHeightMap.size() - 2);
-	int nMaxIndex = Clamp((int)(fMaxX / m_fSegmentSize + 1), 0, (int)m_oHeightMap.size() - 2);
+	int nMinIndex = Clamp(static_cast<int>(fMinX / m_fSegmentSize - 1), 0, static_cast<int>(m_oHeightMap.size()) - 2);
+	int nMaxIndex = Clamp(static_cast<int>(fMaxX / m_fSegmentSize + 1), 0, static_cast<int>(m_oHeightMap.size()) - 2);
 	return CTerrain::CTerrainLineIterator(nMinIndex, nMaxIndex, *this);
 	// return CTerrain::CTerrainLineIterator(0, m_oHeightMap.size() - 2, *this);
 }

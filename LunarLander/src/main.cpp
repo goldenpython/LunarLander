@@ -55,14 +55,14 @@ private:
 };
 
 void DrawInterface(IGraphics *poGraphics, gui::IGUIFont* poFont, CLunarModule *poLunarModule, CTerrain *poTerrain) {
-	const int nLifePosX = 20, nLifePosY = 10, nLifeWidth = 100, nLifeHeight = 12;
+	const int nLifePosX = 20, nLifePosY = 10, nLifeWidth = 100, nLifeHeight = 12;poFont->setKerningHeight(20);
 	poGraphics->SetColor(128, 0, 0);
 	poGraphics->FillRect(nLifePosX, nLifePosY, nLifeWidth, nLifeHeight);
 
 	poGraphics->SetColor(0, 255, 0);
 	int nCurrentLifeWidth = 0;
 	if (poLunarModule->GetLifePercent() > 0)
-		nCurrentLifeWidth = (int)((nLifeWidth - 4) * poLunarModule->GetLifePercent());
+		nCurrentLifeWidth = static_cast<int>((nLifeWidth - 4) * poLunarModule->GetLifePercent());
 	poGraphics->FillRect(nLifePosX + 2, nLifePosY + 2, nCurrentLifeWidth, nLifeHeight - 4);
 
 	const int nLifeIconCenterX = nLifePosX / 2, nLifeIconCenterY = nLifePosY + nLifeHeight / 2, nLifeIconWH = nLifeHeight;
@@ -75,7 +75,7 @@ void DrawInterface(IGraphics *poGraphics, gui::IGUIFont* poFont, CLunarModule *p
 	const int nWindCenterX = 40, nWindCenterY = 30, nWindMaxW = nWindCenterX - 4, nArrowW = 5;
 	float fWindSpeed = poTerrain->GetWindSpeed() / MAX_WIND_SPEED;
 	poGraphics->SetColor(255, 0, 0);
-	int nArrowX = (int)(nWindCenterX + fWindSpeed * nWindMaxW);
+	int nArrowX = static_cast<int>(nWindCenterX + fWindSpeed * nWindMaxW);
 	poGraphics->DrawLine(nWindCenterX, nWindCenterY, nArrowX, nWindCenterY);
 	if (fWindSpeed < 0) {
 		poGraphics->DrawLine(nArrowX, nWindCenterY, nArrowX + nArrowW, nWindCenterY + nArrowW);
@@ -84,6 +84,8 @@ void DrawInterface(IGraphics *poGraphics, gui::IGUIFont* poFont, CLunarModule *p
 		poGraphics->DrawLine(nArrowX, nWindCenterY, nArrowX - nArrowW, nWindCenterY + nArrowW);
 		poGraphics->DrawLine(nArrowX, nWindCenterY, nArrowX - nArrowW, nWindCenterY - nArrowW);
 	}
+
+	poFont->draw(L"Wind", core::rect<s32>(nWindCenterX + nWindMaxW, nWindCenterY - nArrowW, poGraphics->GetScreenWidth() / 4, poGraphics->GetScreenHeight()), video::SColor(255, 127, 127, 255));
 
 	if (poFont) {
 		int nMessagePosX = 20, nMessagePosY = 40;

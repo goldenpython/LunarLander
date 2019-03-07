@@ -62,7 +62,7 @@ void CLunarModule::Draw(IGraphics *poGraphics, bool bLeftEngineActive, bool bRig
 }
 
 void CLunarModule::DrawLineVector(IGraphics *poGraphics, const vector<CLine> &roLines, CVector2D<float> &roCameraPos) {
-	for (int i = 0; i < (int)roLines.size(); i++) {
+	for (int i = 0; i < static_cast<int>(roLines.size()); i++) {
 		CLine oLineAfterTranform(roLines[i]);
 		ApplyLunarModuleTranformToLine(oLineAfterTranform);
 		DrawLine(poGraphics, oLineAfterTranform, roCameraPos);
@@ -185,7 +185,7 @@ void CLunarModule::CheckCollisions(float fFrameDeltaTimeInSeconds) {
 		m_fAngularSpeed = m_fAngularSpeedPrev;
 		m_fAngle = m_fAnglePrev;
 
-		oNewSpeed /= (float)nNumCollisions;
+		oNewSpeed /= nNumCollisions;
 		m_oCenter += oPosOffset;
 		oNewSpeed *= 0.4f;
 		m_oSpeedPrev = m_oSpeed;
@@ -198,7 +198,7 @@ void CLunarModule::CheckCollisions(float fFrameDeltaTimeInSeconds) {
 }
 
 bool CLunarModule::CheckCollisionWithTerrainSegment(const vector<CLine> &roLunarModuleElements, const CLine &roTerrainLine, CVector2D<float> &roIntersectionPoint) {
-	for (int i = 0; i < (int)roLunarModuleElements.size(); i++) {
+	for (int i = 0; i < static_cast<int>(roLunarModuleElements.size()); i++) {
 		CLine oLineAfterTranform(roLunarModuleElements[i]);
 		ApplyLunarModuleTranformToLine(oLineAfterTranform);
 		CVector2D<float> oIntersection;
@@ -224,7 +224,7 @@ float CLunarModule::GetLifePercent() const {
 }
 
 void CLunarModule::DrawLine(IGraphics *poGraphics, const CLine &roLine, CVector2D<float> &roCameraPos) {
-	poGraphics->DrawLine((int)(roLine.m_fX1 - roCameraPos.x), (int)(roLine.m_fY1 - roCameraPos.y), (int)(roLine.m_fX2 - roCameraPos.x), (int)(roLine.m_fY2 - roCameraPos.y));
+	poGraphics->DrawLine(static_cast<int>(roLine.m_fX1 - roCameraPos.x), static_cast<int>(roLine.m_fY1 - roCameraPos.y), static_cast<int>(roLine.m_fX2 - roCameraPos.x), static_cast<int>(roLine.m_fY2 - roCameraPos.y));
 }
 
 void CLunarModule::ApplyLunarModuleTranformToLine(CLine &roLine) {

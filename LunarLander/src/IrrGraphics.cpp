@@ -18,14 +18,14 @@ void IrrGraphics::DrawLine(int nXFrom, int nYFrom, int nXTo, int nYTo) {
 }
 
 void IrrGraphics::FillTriangle(int nX1, int nY1, int nX2, int nY2, int nX3, int nY3) {
-	float fInvSlope1 = (float)(nX2 - nX1) / (nY2 - nY1);
-	float fInvSlope2 = (float)(nX3 - nX1) / (nY3 - nY1);
+	float fInvSlope1 = static_cast<float>(nX2 - nX1) / (nY2 - nY1);
+	float fInvSlope2 = static_cast<float>(nX3 - nX1) / (nY3 - nY1);
 
-	float fCurX1 = (float)nX1;
-	float fCurX2 = (float)nX1;
+	float fCurX1 = static_cast<float>(nX1);
+	float fCurX2 = static_cast<float>(nX1);
 
 	for (int nScanLineY = nY1; nScanLineY <= nY2; nScanLineY++) {
-		DrawLine((int)fCurX1, nScanLineY, (int)fCurX2, nScanLineY);
+		DrawLine(static_cast<int>(fCurX1), nScanLineY, static_cast<int>(fCurX2), nScanLineY);
 		fCurX1 += fInvSlope1;
 		fCurX2 += fInvSlope2;
 	}
